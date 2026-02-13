@@ -3,266 +3,286 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="robots" content="index,follow" />
-  <title>Joseph’s Well | Water From Air System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Water From Air With a Self-Built System</title>
+  <meta name="description" content="Learn a self-built system to source water from the air using natural humidity and basic condensation concepts." />
 
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#0f1a2f;
-      --text:#e9eefc;
-      --muted:#b8c3e6;
-      --line:rgba(255,255,255,.10);
-      --accent:#4aa3ff;
-      --accent2:#2dd4bf;
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --radius: 18px;
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --shadow: 0 10px 24px rgba(15,23,42,0.08);
+      --btn:#0f172a;
+      --btnText:#ffffff;
+      --max: 1100px;
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+      background:var(--bg);
       color:var(--text);
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(74,163,255,.25), transparent 55%),
-                  radial-gradient(1000px 600px at 90% 10%, rgba(45,212,191,.18), transparent 55%),
-                  linear-gradient(180deg, #070b14 0%, #0b1220 60%, #070b14 100%);
-      line-height:1.35;
+      line-height:1.5;
     }
-    a{color:inherit}
+
+    /* Page container */
     .wrap{
-      max-width:1100px;
-      margin:0 auto;
-      padding:22px 16px 40px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 28px;
     }
-    .card{
-      background: rgba(15,26,47,.85);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    header{
-      padding:18px 18px 0;
-    }
-    .top{
-      display:flex;
-      gap:18px;
+
+    /* HERO (Z-pattern) */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
       align-items:center;
-      justify-content:space-between;
-      padding:18px;
+      padding: 18px 0 10px;
     }
-    .hero-left{
-      flex:1 1 520px;
-      min-width:0;
-    }
-    .hero-right{
-      flex:0 0 360px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:10px;
-    }
+
     h1{
-      margin:0 0 10px;
-      font-size: clamp(28px, 3.6vw, 44px);
-      letter-spacing:-.02em;
-      line-height:1.12;
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4.8vw, 44px);
+      line-height:1.1;
+      letter-spacing:-0.02em;
     }
-    .sub{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size: clamp(15px, 1.6vw, 18px);
+
+    .subhead{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+      max-width: 52ch;
     }
 
     .cta-area{
       display:flex;
       flex-direction:column;
-      gap:10px;
       align-items:flex-start;
-      margin-top:14px;
+      gap:10px;
     }
-    .btn{
+
+    .cta{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-      color:#071018;
       text-decoration:none;
-      font-weight:800;
-      border:none;
-      padding:14px 16px;
-      border-radius:14px;
-      box-shadow: 0 12px 26px rgba(74,163,255,.20);
+      background: var(--btn);
+      color: var(--btnText);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,0.08);
+
+      /* mobile-friendly CTA rules */
       max-width: 100%;
+      width: fit-content;
       text-align:center;
-      line-height:1.15;
-
-      /* mobile-friendly wrap rules */
-      white-space: normal;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-    .btn span{
-      display:block;
-    }
-    .trustline{
-      font-size:13px;
-      color:var(--muted);
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-    }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background: rgba(45,212,191,.95);
-      flex:0 0 auto;
+      white-space: normal;   /* allow wrapping */
+      line-height: 1.2;
     }
 
-    .imgbox{
-      width:100%;
-      max-width:340px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:12px;
+    .trust{
+      font-size: 13px;
+      color: var(--muted);
     }
-    .imgbox img{
+
+    .hero-media{
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      background:#fff;
+    }
+
+    .hero-media img{
       width:100%;
       height:auto;
       display:block;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#0a1020;
+      border-radius: 12px;
     }
 
+    /* SOCIAL PROOF: FULL-WIDTH STRIP, NO SIDE PADDING */
+    .socialproof-strip{
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0; /* IMPORTANT: no padding */
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .socialproof-strip img{
+      display:block;
+      width:100%;
+      height:auto;
+      max-width:none;
+    }
+
+    /* Mid-page section */
     .section{
-      padding:18px;
-      border-top:1px solid var(--line);
+      padding: 24px 0 8px;
     }
-    .section h2{
+    .card{
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+      background:#fff;
+    }
+    h2{
       margin:0 0 10px;
-      font-size: clamp(20px, 2.2vw, 28px);
-      letter-spacing:-.01em;
-      line-height:1.15;
+      font-size: clamp(20px, 3.4vw, 28px);
+      line-height:1.2;
+      letter-spacing:-0.01em;
     }
-    .section p{
-      margin:0 0 10px;
-      color:var(--text);
-      opacity:.92;
-      font-size:16px;
+    .bodycopy{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
     }
-    .section p:last-child{margin-bottom:0}
-    .muted{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-    }
+    .bodycopy p{ margin: 0 0 12px; }
+    .bodycopy p:last-child{ margin-bottom:0; }
+
+    /* Bottom */
     footer{
-      padding:18px;
-      border-top:1px solid var(--line);
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+      border-top: 1px solid var(--border);
+      margin-top: 26px;
+      padding: 18px 0 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .fineprint{
+      max-width: 90ch;
+    }
+    .fineprint p{ margin:0 0 10px; }
+    .fineprint p:last-child{ margin-bottom:0; }
+    .disclosure{
+      margin-top: 12px;
+      font-weight: 600;
+      color: #334155;
     }
 
     /* Responsive */
-    @media (max-width: 900px){
-      .top{flex-direction:column; align-items:stretch}
-      .hero-right{flex:0 0 auto}
-      .cta-area{align-items:stretch}
-      .btn{width:100%}
-      .imgbox{max-width:520px; margin:0 auto}
+    @media (max-width: 860px){
+      .hero{
+        grid-template-columns: 1fr;
+      }
+      .cta-area{
+        align-items: stretch;
+      }
+      .cta{
+        width: 100%;
+      }
+      .hero-media{
+        order: -1; /* image first on mobile */
+      }
+      .subhead{
+        max-width: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="card">
-      <header aria-label="Top section">
-        <div class="top">
-          <div class="hero-left">
-            <h1>Get Water From Air With a Self-Built System</h1>
-            <p class="sub">
-              Water access isn’t guaranteed — droughts and shortages can make traditional sources unreliable.
-              Learn a self-built system to source water from the air.
-            </p>
+  <main>
+    <div class="wrap">
+      <section class="hero" aria-label="Hero">
+        <div>
+          <h1>Get Water From Air With a Self-Built System</h1>
+          <p class="subhead">
+            Water access isn’t guaranteed — droughts and shortages can make traditional sources unreliable.
+            Learn a self-built system to source water from the air.
+          </p>
 
-            <div class="cta-area">
-              <a class="btn" href="https://uswaterrevolution.com/#aff=Kiere1989" rel="nofollow noopener">
-                <span>Access the Water-From-Air System Now</span>
-              </a>
-
-              <div class="trustline" aria-label="Trust line">
-                <span class="pill"><span class="dot" aria-hidden="true"></span>60-Day Money-Back Guarantee — Try it Risk-Free.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-right">
-            <div class="imgbox" aria-label="Product image">
-              <img src="product.PNG" alt="Product image">
-            </div>
+          <div class="cta-area">
+            <a class="cta" href="https://uswaterrevolution.com/#aff=Kiere1989" rel="nofollow noopener">
+              Access the Water-From-Air System Now
+            </a>
+            <div class="trust">60-Day Money-Back Guarantee — Try it Risk-Free.</div>
           </div>
         </div>
-      </header>
 
-      <!-- Social Proof Section (OMITTED if no testimonials in the document) -->
+        <div class="hero-media">
+          <img src="product.PNG" alt="Product image">
+        </div>
+      </section>
+    </div>
 
+    <!-- FULL-WIDTH SOCIAL PROOF STRIP (no padding, touches edges) -->
+    <section class="socialproof-strip" aria-label="Social proof">
+      <img src="socialproof.PNG" alt="Social proof image">
+    </section>
+
+    <div class="wrap">
       <section class="section" aria-label="Problem and solution">
-        <h2>When Water Isn’t Guaranteed — Learn a System to Get Water From Air</h2>
+        <div class="card">
+          <h2>When Water Isn’t Guaranteed — Learn a System to Get Water From Air</h2>
 
-        <p>
-          Water access isn’t always guaranteed. Droughts, shortages, and changing conditions can make wells, utilities,
-          and stored supplies unreliable—especially when demand increases or systems fail.
-        </p>
+          <div class="bodycopy">
+            <p>
+              Water access isn’t always guaranteed. Droughts, shortages, and changing conditions can make wells, utilities,
+              and stored supplies unreliable—especially when demand increases or systems fail.
+            </p>
+            <p>
+              Most traditional solutions depend on fixed infrastructure or limited reserves. Once those sources are disrupted,
+              there’s often no clear alternative. What many people don’t realize is that moisture already present in the air
+              can be captured—but only if it’s done using the right principles and conditions.
+            </p>
+            <p>
+              Joseph’s Well explains a self-built system that shows how to source water from the air using natural humidity
+              and basic condensation concepts. It’s not a machine or a shortcut—it’s a structured guide that walks through how
+              the system works, what materials are involved, and what environmental factors matter, so you can realistically
+              evaluate whether it fits your situation.
+            </p>
+            <p>
+              If you want to learn an independent approach to water sourcing—without relying entirely on traditional systems—this
+              guide lets you explore the method and decide if it makes sense for your environment.
+            </p>
+          </div>
 
-        <p>
-          Most traditional solutions depend on fixed infrastructure or limited reserves. Once those sources are disrupted,
-          there’s often no clear alternative. What many people don’t realize is that moisture already present in the air can be captured—
-          but only if it’s done using the right principles and conditions.
-        </p>
+          <div style="height:14px"></div>
 
-        <p>
-          Joseph’s Well explains a self-built system that shows how to source water from the air using natural humidity and basic
-          condensation concepts. It’s a structured guide that walks through how the system works, what materials are involved,
-          and what environmental factors matter—so you can realistically evaluate whether it fits your situation.
-        </p>
-
-        <p>
-          If you want to learn an independent approach to water sourcing—without relying entirely on traditional systems—this guide lets you
-          explore the method and decide if it makes sense for your environment.
-        </p>
+          <div class="cta-area" style="align-items:stretch;">
+            <a class="cta" href="https://uswaterrevolution.com/#aff=Kiere1989" rel="nofollow noopener">
+              Access the Water-From-Air System Now
+            </a>
+            <div class="trust">60-Day Money-Back Guarantee — Try it Risk-Free.</div>
+          </div>
+        </div>
       </section>
 
-      <footer aria-label="Bottom section">
-        <div class="muted">
-          <strong>Privacy Policy</strong><br><br>
-          This website uses cookies and similar technologies to analyze traffic and support advertising, affiliate tracking, and website performance.<br><br>
-          Third-party vendors, including Google, may use cookies or similar identifiers to serve ads and measure ad performance based on a user’s prior visits to this website or other websites. These technologies may collect information such as browser type, device type, general location, pages visited, and interaction data.<br><br>
-          If you click a link on this website and are redirected to a third-party website, that third-party provider may collect information according to their own privacy policies and terms.<br><br>
-          You can control or disable cookies through your browser settings. However, disabling cookies may affect the functionality of this website.<br><br>
-          By continuing to use this website, you acknowledge and accept the use of cookies and similar technologies as described above.
-        </div>
+      <footer>
+        <div class="fineprint">
+          <p>
+            This website uses cookies and similar technologies to analyze traffic and support advertising, affiliate tracking, and website performance.
+          </p>
+          <p>
+            Third-party vendors, including Google, may use cookies or similar identifiers to serve ads and measure ad performance based on a user’s prior visits
+            to this website or other websites. These technologies may collect information such as browser type, device type, general location, pages visited,
+            and interaction data.
+          </p>
+          <p>
+            If you click a link on this website and are redirected to a third-party website, that third-party provider may collect information according to their
+            own privacy policies and terms.
+          </p>
+          <p>
+            You can control or disable cookies through your browser settings. However, disabling cookies may affect the functionality of this website.
+          </p>
+          <p>
+            By continuing to use this website, you acknowledge and accept the use of cookies and similar technologies as described above.
+          </p>
 
-        <div class="muted">
-          <strong>Affiliate Disclosure</strong><br>
-          This page contains affiliate links. If you choose to make a purchase, we may earn a commission at no additional cost to you.
+          <p class="disclosure">
+            Affiliate Disclosure: This page contains affiliate links. If you choose to make a purchase, we may earn a commission at no additional cost to you.
+          </p>
         </div>
       </footer>
     </div>
-  </div>
+  </main>
 </body>
 </html>
